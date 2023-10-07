@@ -1,5 +1,8 @@
 /*
     muestra el directorio actual
+
+    funcion GetCurrentDirectory de la winAPI 
+    https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-getcurrentdirectory
 */
 
 #include <iostream>
@@ -7,10 +10,10 @@
 
 int main() {
     
-    // definir un buffer
+    // definir variable
     char buffer[MAX_PATH];
     
-    // obtener el directorio
+    // resultado de funcion en variable
     DWORD length = GetCurrentDirectory(MAX_PATH, buffer);
 
     // si error
