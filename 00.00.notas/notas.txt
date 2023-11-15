@@ -1,5 +1,14 @@
 
+extensiones para visual studio code
+	C/C++ for visual studio code
+	CMake Tools
+	C/C++ Compile Run
+
+	Better C++ Syntax
+	C/C++ Themes
+
 instalar compilador tdm-gcc para windows
+	este compilador se integra bien con win y con visual studio code
 	en linux no hay problema proque se incluye en build-essential
 		instalar		sudo apt install build-essential
 		comprobar version	gcc --version
@@ -20,6 +29,6 @@ instalar compilador tdm-gcc para windows
 					panel de control, sistema, configuracion avanzada, opciones avanzadas
 					variables del sistema, Path
 					C:\TDM-GCC-64\bin
-	este compilador se integra bien con win y con visual studio code
 	directorio de include, de los .h: 	C:\TDM-GCC-64\lib\gcc\x86_64-w64-mingw32\10.3.0\include
+	
 	
