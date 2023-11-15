@@ -1,0 +1,25 @@
+
+instalar compilador tdm-gcc para windows
+	en linux no hay problema proque se incluye en build-essential
+		instalar		sudo apt install build-essential
+		comprobar version	gcc --version
+	en win
+		web		https://jmeubank.github.io/tdm-gcc/
+		descargas 	https://jmeubank.github.io/tdm-gcc/download/
+		instalar 
+			en la raiz del disco
+			en el propio proceso de instalacion agrega variable de entorno
+				esto es para poder ejecutar los exe desde cualquier directorio
+				puede hacerse tamb con programas propios y scripts 
+			comprobar con comandos en cmd, cualquier directorio, aparecerá la version
+				gcc --version
+				g++ --version
+				mingw32-make -v
+		si no aparece version agregar variable de entorno
+				configurar variables de entorno
+					panel de control, sistema, configuracion avanzada, opciones avanzadas
+					variables del sistema, Path
+					C:\TDM-GCC-64\bin
+	este compilador se integra bien con win y con visual studio code
+	directorio de include, de los .h: 	C:\TDM-GCC-64\lib\gcc\x86_64-w64-mingw32\10.3.0\include
+	
