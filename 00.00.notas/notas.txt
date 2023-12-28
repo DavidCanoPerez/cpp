@@ -30,5 +30,125 @@ instalar compilador tdm-gcc para windows
 					variables del sistema, Path
 					C:\TDM-GCC-64\bin
 	directorio de include, de los .h: 	C:\TDM-GCC-64\lib\gcc\x86_64-w64-mingw32\10.3.0\include
-	
+
+codeblocks + tdm-gcc + wxwidgets
+	video actual		https://www.youtube.com/watch?v=LZacAgSBWa0
+	instalar compilador
+		ir a 	https://jmeubank.github.io/tdm-gcc/download/
+		instalar
+			en el propio proceso de instalacion agrega variable de entorno
+			comprobar con comandos en cmd, cualquier directorio, aparecerá la version
+				gcc --version
+				g++ --version
+				mingw32-make -v
+			si no aparece version agregar variable de entorno
+	instalar codeblocks, descargar codeblocks-20.03-setup.exe
+	compilar las librerias wxwidgets (tamaño final 634MB con las dinamicas y estaticas ya compiladas)
+		Documentación: http://docs.wxwidgets.org/
+		Guía y opciones compilación: https://wiki.wxwidgets.org/WxWidgets_Build_Configurations
+		instalar tdm-gcc 64 https://jmeubank.github.io/tdm-gcc/
+			en la instalacion este compilador añade sus variables al PATH del sistema
+			compruebese en cmd con los comandos
+				gcc --version
+				g++ --version
+				mingw32-make -v
+		Compilar las wxwidgets:
+			Bajar las versiones estables, descargar desde https://www.wxwidgets.org/
+				Windows ZIP
+				descomprimir como wxWidgets-3.1.5 en el directorio C:\
+			En otras ocasiones provoco errores C:\Program Files\GtkSharp\2.12\bin en el path del sistema, se puede quitar y luego reponer
+			Desactivar el antivirus hasta reinicio
+			abrir terminal con permisos de administrador
+				inicio, teclear cmd, ejecutar como administrador
+			ir al direcotorio, comando cmd: cd C:\wxWidgets-3.1.5\build\msw
+			actualmente
+				mingw32-make -f makefile.gcc  RUNTIME_LIBS=static USE_XRC=1 MONOLITHIC=1 SHARED=0 UNICODE=1 BUILD=release TARGET_CPU=X64 CXXFLAGS="-std=gnu++11"
+				mingw32-make -f makefile.gcc  RUNTIME_LIBS=dynamic USE_XRC=1 MONOLITHIC=1 SHARED=1 UNICODE=1 BUILD=release TARGET_CPU=X64 CXXFLAGS="-std=gnu++11"
+				se habran creado en C:\wxWidgets-3.2.4\lib dos carpetas
+					gcc_dll
+					gcc_lib
+			antiguos comandos
+				COMANDO cmd PARA LAS DEBUG: mingw32-make -f makefile.gcc BUILD=debug SHARED=0 MONOLITHIC=1 UNICODE=1
+				COMANDO cmd PARA LAS RELEASE: mingw32-make -f makefile.gcc BUILD=release SHARED=0 MONOLITHIC=1 UNICODE=1
+				Si el resultado es existoso se habran generado carpetas en gcc_lib en C:\wxWidgets-3.1.5\lib
+					mswud - carpeta de las debug
+					mswu - carpeta de las release
+			No alarmarse si se ve la palabra error, hay algunas librerias que contienen en su nombre la palabra error
+				ej: wxscintilla_LexErrorList.o
+				Puede copiarse el resultado de todo el cmd y buscar la palabra error, si solo son nombres de libreias no hay problema
+			Lo que no es normal es ver algo tipo
+				abnormal program termination
+				E:\Program Files\CodeBlocks\bin\mingw32-make.exe: [gcc_msw\wxregex_regcomp.o] Error 3 (ignored)
+				Y es que alguna gente compila desde un IDE, en general mejor desde cmd
+			crear variable para los directorios wx
+				panel de control, sistema, configuracion avanzada, variables de entorno, variables del sistema
+					nueva
+						nombre WX
+						valor C:\wxWidgets-3.2.4
+	configuacion codeblocks
+		al iniciar un proyecto para wxwidgets seleccionar wxSmith
+		documentacion del ide
+			https://www.codeblocks.org/docs/main_codeblocks_en.html
+			https://www.codeblocks.org/user-manual/
+		añadir excepcion antivirus	C:\Users\david\Documents\CodeBlocks
+		añadir compilador
+			preferencias, compiler, 
+				ej: gnu gcc compiler, toolchain executables, autodetectar
+					este incluye gcc y g++
+					si no lo detecta: C:\TDM-GCC-64 
+		poner en español
+			poner archivo 		es_LC_MESSAGES_codeblocks.mo
+			en carpeta 		C:\Program Files\CodeBlocks\share\CodeBlocks\Locale\es_Es		
+			settings, environment, view, internationalization, spanish
+		cambiar apariencia
+			inicio, configuracion, escribir lupa, activar/desactivar lupa, click en invertir colores, 
+			abrir codeblocks, escribir lupa en barra de busqueda, puede que la lupa tenga mucho zoom disminuir
+		quitar repaso de ortografia en comentarios
+			settings, editor, spellcheker, desmarcar
+				online spell checker
+				spelling suggestion tooltips
+				thesaurus tooltips		
+		errores
+			error al cambiar la fuente general del editor
+				wxWidgets font error in Code::Blocks "assert "numWeight > 0" failed in GetWeightClosestToNumericValue()"
+				solución: seleccionar tamaño 12 or 18 para la letra, luego aumentar/disminuir con ctrl +rueda del mouse
+
+c++
+	interfaces graficas
+		librerias
+			win API
+
+				https://www.codeproject.com/Articles/620045/Custom-Controls-in-Win-API-Visual-Styles
+				https://www.codeproject.com/Articles/14712/Win32-SDK-C-Tab-Control-Made-Easy
+			Qt
+			wxWidget
+				info interesante	https://zinjai.sourceforge.net/index.php?page=wxtutorial.html
+			gtk
+				libreria frecuente en linux
+				muy potente
+				https://www.gtk.org/
+			SDL	
+				Simple DirectMedia Layer
+				https://www.libsdl.org/
+				It is a cross-platform development library designed to provide low level access to audio, 
+				keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D.It can be used to make animations and video games.
+				This license allows you to use SDL freely in any software
+				
+				un buen ejemplo de uso de c++ sdl y imgui: https://decovar.dev/blog/2019/05/26/sdl-imgui/#how-to-customize-the-style
+			Imgui
+				https://github.com/ocornut/imgui
+			Nana
+				http://nanapro.org/en-us/
+			sfml
+				https://www.sfml-dev.org/
+				SFML is free for any use (commercial or personal, proprietary or open-source)
+			FLTK
+				Fast, Light Toolkit
+				PARECE SOLO PARA LINUX
+				https://flwm.sourceforge.net/
+
+windows temporales
+	C:\Windows\Temp
+	C:\Users\...user...\AppData\Local\Temp
+
 	
